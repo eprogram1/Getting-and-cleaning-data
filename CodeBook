@@ -1,14 +1,81 @@
 ## Aim
 This is the codebook for the variables included in the getting and cleaning data analysis
 
-## Variables and data 
-
-The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
-
-One of the most exciting areas in all of data science right now is wearable computing - see for example this article . Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
-
-http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+## Input 
+. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained
+Source <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+>
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data.
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
+For each record in the dataset it is provided:
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope.
+- A 561-feature vector with time and frequency domain variables.
+- Its activity label.
+- An identifier of the subject who carried out the experiment. 
 
 Here are the data for the project:
-
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+The dataset includes the following files:
+=========================================
+- 'README.txt'
+- 'RawData/acc_expXX_userYY.txt': The raw triaxial acceleration signal for the experiment number XX and associated to the user number YY. Every row is one acceleration sample (three axis) captured at a frequency of 50Hz. 
+- 'RawData/gyro_expXX_userYY.txt': The raw triaxial angular speed signal for the experiment number XX and associated to the user number YY. Every row is one angular velocity sample (three axis) captured at a frequency of 50Hz. 
+- 'RawData/labels.txt': include all the activity labels available for the dataset (1 per row). 
+   Column 1: experiment number ID, 
+   Column 2: user number ID, 
+   Column 3: activity number ID 
+   Column 4: Label start point (in number of signal log samples (recorded at 50Hz))
+   Column 5: Label end point (in number of signal log samples)
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+- 'features.txt': List of all features.
+- 'activity_labels.txt': Links the activity ID with their activity name.
+- 'Train/X_train.txt': Training set.
+- 'Train/y_train.txt': Training labels.
+- 'Test/X_test.txt': Test set.
+- 'Test/y_test.txt': Test labels.
+- 'Train/subject_id_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+- 'Test/subject_id_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30
+
+## Output 
+The data_tidy variable is generated by the script using as input the set - features.txt; activity_labels.txt; Train/X_train.txt; Train/y_train.txt; Test/X_test.txt; Test/y_test.txt
+### The steps followed in the scripts are the following
+1.	    load all the data files
+2.	    library(dplyr)
+3.	    features load
+4.	    labels load
+5.	    test data load
+6.	    assign the names to the columns
+7.	    train data load
+8.	    assign the names to the columns
+9.	    join all the values in data_test_train variable
+10.	    select the columns that include mean or std in their label
+11.	    calculate the mean value of the columns
+12.	    erase the added values by aggregate
+13.	    change the number of the activity type by the text assigned to each of them
+14.	    optional to visualize the data
+The variables included in the  data_tidy are
+* 349 rows distributed each row refers to a subject and an specific type of action
+*  81 variables selected from:
+	1. the original 561+ subject_id + Activity values. 
+2. The selection criteria has been the inclusion of the values that refers to mean and std measurements. .
+3. The mean values in the cases where there was more than one row for the each set: subject_id + Activity values 
+The 81 variables are the following
+ [1] "Subject_ID"                  "Activity"                    "tBodyAcc-Mean-1"             "tBodyAcc-Mean-2"             "tBodyAcc-Mean-3"            
+ [6] "tGravityAcc-Mean-1"          "tGravityAcc-Mean-2"          "tGravityAcc-Mean-3"          "tBodyAccJerk-Mean-1"         "tBodyAccJerk-Mean-2"        
+[11] "tBodyAccJerk-Mean-3"         "tBodyGyro-Mean-1"            "tBodyGyro-Mean-2"            "tBodyGyro-Mean-3"            "tBodyGyroJerk-Mean-1"       
+[16] "tBodyGyroJerk-Mean-2"        "tBodyGyroJerk-Mean-3"        "tBodyAccMag-Mean-1"          "tGravityAccMag-Mean-1"       "tBodyAccJerkMag-Mean-1"     
+[21] "tBodyGyroMag-Mean-1"         "tBodyGyroJerkMag-Mean-1"     "fBodyAcc-Mean-1"             "fBodyAcc-Mean-2"             "fBodyAcc-Mean-3"            
+[26] "fBodyAcc-MeanFreq-1"         "fBodyAcc-MeanFreq-2"         "fBodyAcc-MeanFreq-3"         "fBodyAccJerk-Mean-1"         "fBodyAccJerk-Mean-2"        
+[31] "fBodyAccJerk-Mean-3"         "fBodyAccJerk-MeanFreq-1"     "fBodyAccJerk-MeanFreq-2"     "fBodyAccJerk-MeanFreq-3"     "fBodyGyro-Mean-1"           
+[36] "fBodyGyro-Mean-2"            "fBodyGyro-Mean-3"            "fBodyGyro-MeanFreq-1"        "fBodyGyro-MeanFreq-2"        "fBodyGyro-MeanFreq-3"       
+[41] "fBodyAccMag-Mean-1"          "fBodyAccMag-MeanFreq-1"      "fBodyAccJerkMag-Mean-1"      "fBodyAccJerkMag-MeanFreq-1"  "fBodyGyroMag-Mean-1"        
+[46] "fBodyGyroMag-MeanFreq-1"     "fBodyGyroJerkMag-Mean-1"     "fBodyGyroJerkMag-MeanFreq-1" "tBodyAcc-STD-1"              "tBodyAcc-STD-2"             
+[51] "tBodyAcc-STD-3"              "tGravityAcc-STD-1"           "tGravityAcc-STD-2"           "tGravityAcc-STD-3"           "tBodyAccJerk-STD-1"         
+[56] "tBodyAccJerk-STD-2"          "tBodyAccJerk-STD-3"          "tBodyGyro-STD-1"             "tBodyGyro-STD-2"             "tBodyGyro-STD-3"            
+[61] "tBodyGyroJerk-STD-1"         "tBodyGyroJerk-STD-2"         "tBodyGyroJerk-STD-3"         "tBodyAccMag-STD-1"           "tGravityAccMag-STD-1"       
+[66] "tBodyAccJerkMag-STD-1"       "tBodyGyroMag-STD-1"          "tBodyGyroJerkMag-STD-1"      "fBodyAcc-STD-1"              "fBodyAcc-STD-2"             
+[71] "fBodyAcc-STD-3"              "fBodyAccJerk-STD-1"          "fBodyAccJerk-STD-2"          "fBodyAccJerk-STD-3"          "fBodyGyro-STD-1"            
+[76] "fBodyGyro-STD-2"             "fBodyGyro-STD-3"             "fBodyAccMag-STD-1"           "fBodyAccJerkMag-STD-1"       "fBodyGyroMag-STD-1"         
+[81] "fBodyGyroJerkMag-STD-1" 
+
