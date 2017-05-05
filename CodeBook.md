@@ -62,7 +62,8 @@ The variables included in the  data_tidy are
 *  81 variables selected from:
 	1. the original 561+ subject_id + Activity values. 
 	2. The selection criteria has been the inclusion of the values that refers to mean and std measurements. .
-	3. The mean values in the cases where there was more than one row for the each set: subject_id + Activity values 
+	3. The mean values are calculated among the cases where there was more than one row for the each set: subject_id + Activity values
+	
 The 81 variables are the following
  [1] "Subject_ID"                  "Activity"                    "tBodyAcc-Mean-1"             "tBodyAcc-Mean-2"             "tBodyAcc-Mean-3"            
  [6] "tGravityAcc-Mean-1"          "tGravityAcc-Mean-2"          "tGravityAcc-Mean-3"          "tBodyAccJerk-Mean-1"         "tBodyAccJerk-Mean-2"        
