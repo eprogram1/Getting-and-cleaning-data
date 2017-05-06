@@ -11,17 +11,13 @@ Create one R script called run_analysis.R that does the following:
     
  ## Explanation of the run_analysis.R script
    The steps followed in the scripts are the following
-   1.	 load all the data files 
-2.	library(dplyr)
-3.	 features load
-4.	 labels load
-5.	 test data load 
-6.	 assign the names to the columns
-7.	 train data load 
-8.	 assign the names to the columns
-9.	  join all the values in data_test_train variable
-10.	 select the columns that include mean or std in their label
-11.	 calculate the mean value of the columns
-12.	 erase the added values by aggregate
-13.	 change the number of the activity type by the text assigned to each of them
-14.	 optional to visualize the data
+ 1.	 load all the data files 
+2.	features load
+3.	labels load
+4.	test data load & assign the names to the columns
+5.	train data load  & assign the names to the columns
+6. join all the values in data_test_train variable
+7.	erase () from variable names
+8.	select the columns that include mean or std in their label + Subject ID + Activity
+9.	calculate the mean grouped by subject Id and activity
+10. write to file 
