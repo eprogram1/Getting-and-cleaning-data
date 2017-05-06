@@ -58,7 +58,7 @@ The variables included in the data_tidy (data_tidy.txt) set are
 * 180 rows distributed each row refers to a subject and an specific type of action
 *  88 variables selected from:
 	1. the original 561+ subject_id + Activity values. 
-	2. The selection criteria has been the inclusion of the values that refers to mean and std measurements. 
+	2. The selection criteria has been the inclusion of the values that refers to mean or Mean and std  or Stdmeasurements. 
 	3. The mean values are calculated among the cases where there was more than one row for the each set: subject_id + Activity values
 	
 The 88 variables are the following
