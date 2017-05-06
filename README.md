@@ -17,7 +17,7 @@ Create one R script called run_analysis.R that does the following:
 4.	test data load & assign the names to the columns
 5.	train data load  & assign the names to the columns
 6. join all the values in data_test_train variable
-7.	erase () from variable names
+7.	erase () from variable names  and change, by _
 8.	select the columns that include mean or std in their label + Subject ID + Activity
 9.	calculate the mean grouped by subject Id and activity
 10. write to file 
